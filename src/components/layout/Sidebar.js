@@ -61,6 +61,13 @@ const Sidebar = () => {
             >
               <ListItemText primary="Vertrag AS9838259145" />
             </ListItem>
+            <ListItem
+              button
+              onContextMenu={(e) => handleContextMenu(e, 'AS1122334455')}
+              selected={selectedItem === 'AS1122334455'}
+            >
+              <ListItemText primary="Vertrag AS1122334455" />
+            </ListItem>
             <ListItem button>
               <ListItemText primary="Offerte VN123456" />
             </ListItem>
