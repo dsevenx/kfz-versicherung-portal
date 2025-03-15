@@ -14,7 +14,7 @@ const ContractPaper = styled(Paper)`
 const SectionTitle = styled(Typography)`
   font-weight: 500 !important;
   margin-bottom: 10px !important;
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.customTheme.colors.accent};
 `;
 
 const InfoRow = styled.div`
@@ -25,7 +25,7 @@ const InfoRow = styled.div`
 
 const IconWrapper = styled.div`
   margin-right: 8px;
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.customTheme.colors.accent};
 `;
 
 const StatusChip = styled(Chip)`
@@ -108,50 +108,50 @@ const ContractOverview = () => {
           </Grid>
           
           <Grid item xs={12} md={6}>
-            <SectionTitle variant="h6" theme={theme}>
+            <SectionTitle variant="h6" customTheme={theme}>
               Kontaktdaten
             </SectionTitle>
             <InfoRow>
-              <IconWrapper theme={theme}><Home fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><Home fontSize="small" /></IconWrapper>
               <div>
                 {contract.address.street}<br />
                 {contract.address.zipCode} {contract.address.city}
               </div>
             </InfoRow>
             <InfoRow>
-              <IconWrapper theme={theme}><Person fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><Person fontSize="small" /></IconWrapper>
               <div>Geburtsdatum: {contract.birthDate}</div>
             </InfoRow>
             <InfoRow>
-              <IconWrapper theme={theme}><Phone fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><Phone fontSize="small" /></IconWrapper>
               <div>{contract.contactInfo.phonePrivate}</div>
             </InfoRow>
             {contract.contactInfo.phoneMobile && (
               <InfoRow>
-                <IconWrapper theme={theme}><Phone fontSize="small" /></IconWrapper>
+                <IconWrapper customTheme={theme}><Phone fontSize="small" /></IconWrapper>
                 <div>{contract.contactInfo.phoneMobile}</div>
               </InfoRow>
             )}
             <InfoRow>
-              <IconWrapper theme={theme}><Email fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><Email fontSize="small" /></IconWrapper>
               <div>{contract.contactInfo.email}</div>
             </InfoRow>
           </Grid>
           
           <Grid item xs={12} md={6}>
-            <SectionTitle variant="h6" theme={theme}>
+            <SectionTitle variant="h6" customTheme={theme}>
               Vertragsdetails
             </SectionTitle>
             <InfoRow>
-              <IconWrapper theme={theme}><DirectionsCar fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><DirectionsCar fontSize="small" /></IconWrapper>
               <div>{contract.vehicle.make} {contract.vehicle.model}</div>
             </InfoRow>
             <InfoRow>
-              <IconWrapper theme={theme}><EuroSymbol fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><EuroSymbol fontSize="small" /></IconWrapper>
               <div>Prämie: {contract.totalPremium} €</div>
             </InfoRow>
             <InfoRow>
-              <IconWrapper theme={theme}><Event fontSize="small" /></IconWrapper>
+              <IconWrapper customTheme={theme}><Event fontSize="small" /></IconWrapper>
               <div>
                 Beginn: {contract.contractDetails.begin} | Ende: {contract.contractDetails.end}
               </div>
@@ -166,7 +166,7 @@ const ContractOverview = () => {
       </ContractPaper>
       
       <ContractPaper elevation={2}>
-        <SectionTitle variant="h6" theme={theme}>
+        <SectionTitle variant="h6" customTheme={theme}>
           Versicherungsumfang
         </SectionTitle>
         
@@ -205,7 +205,7 @@ const ContractOverview = () => {
       </ContractPaper>
       
       <ContractPaper elevation={2}>
-        <SectionTitle variant="h6" theme={theme}>
+        <SectionTitle variant="h6" customTheme={theme}>
           Zahlungsinformationen
         </SectionTitle>
         

@@ -14,14 +14,14 @@ const VehiclePaper = styled(Paper)`
 const SectionTitle = styled(Typography)`
   font-weight: 500 !important;
   margin-bottom: 15px !important;
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.customTheme.colors.accent};
   display: flex;
   align-items: center;
 `;
 
 const IconWrapper = styled.div`
   margin-right: 8px;
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.customTheme.colors.accent};
 `;
 
 const InfoRow = styled.div`
@@ -76,8 +76,8 @@ const VehicleDetails = () => {
   return (
     <>
       <VehiclePaper elevation={2}>
-        <SectionTitle variant="h6" theme={theme}>
-          <IconWrapper theme={theme}><DirectionsCar /></IconWrapper>
+        <SectionTitle variant="h6" customTheme={theme}>
+          <IconWrapper customTheme={theme}><DirectionsCar /></IconWrapper>
           Fahrzeugdaten
         </SectionTitle>
         
@@ -115,8 +115,8 @@ const VehicleDetails = () => {
       </VehiclePaper>
       
       <VehiclePaper elevation={2}>
-        <SectionTitle variant="h6" theme={theme}>
-          <IconWrapper theme={theme}><Speed /></IconWrapper>
+        <SectionTitle variant="h6" customTheme={theme}>
+          <IconWrapper customTheme={theme}><Speed /></IconWrapper>
           Kilometerstand
         </SectionTitle>
         
@@ -158,8 +158,8 @@ const VehicleDetails = () => {
       </VehiclePaper>
       
       <VehiclePaper elevation={2}>
-        <SectionTitle variant="h6" theme={theme}>
-          <IconWrapper theme={theme}><LocalOffer /></IconWrapper>
+        <SectionTitle variant="h6" customTheme={theme}>
+          <IconWrapper customTheme={theme}><LocalOffer /></IconWrapper>
           Zubehör
         </SectionTitle>
         

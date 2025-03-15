@@ -5,12 +5,12 @@ import { Tabs, Tab, Box } from '@mui/material';
 import { DirectionsCar, AddCircle, Category } from '@mui/icons-material';
 
 const TabsContainer = styled.div`
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.primary};
+  color: ${props => props.customTheme.colors.text};
 `;
 
 const StyledTab = styled(Tab)`
-  color: ${props => props.theme.colors.text} !important;
+  color: ${props => props.customTheme.colors.text} !important;
   opacity: 0.7;
   
   &.Mui-selected {
@@ -27,7 +27,7 @@ const TabPanel = () => {
   };
 
   return (
-    <TabsContainer theme={theme}>
+    <TabsContainer customTheme={theme}>
       <Tabs 
         value={value} 
         onChange={handleChange} 
@@ -35,9 +35,9 @@ const TabPanel = () => {
         textColor="inherit"
         centered
       >
-        <StyledTab icon={<DirectionsCar />} label="Fahrzeug" theme={theme} />
-        <StyledTab icon={<AddCircle />} label="Zusatz" theme={theme} />
-        <StyledTab icon={<Category />} label="Produkt" theme={theme} />
+        <StyledTab icon={<DirectionsCar />} label="Fahrzeug" customTheme={theme} />
+        <StyledTab icon={<AddCircle />} label="Zusatz" customTheme={theme} />
+        <StyledTab icon={<Category />} label="Produkt" customTheme={theme} />
       </Tabs>
     </TabsContainer>
   );

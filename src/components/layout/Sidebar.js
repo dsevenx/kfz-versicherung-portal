@@ -6,8 +6,8 @@ import { ExpandLess, ExpandMore, Description, Person, DirectionsCar, BusinessCen
 
 const SidebarContainer = styled.aside`
   width: 250px;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.secondary};
+  color: ${props => props.customTheme.colors.text};
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 `;
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
   };
 
   return (
-    <SidebarContainer theme={theme}>
+    <SidebarContainer customTheme={theme}>
       <List component="nav">
         <ListItem button onClick={() => handleClick('contracts')}>
           <ListItemIcon>
@@ -135,6 +135,7 @@ const Sidebar = () => {
         <MenuItem onClick={handleContextMenuClose}>Bearbeiten</MenuItem>
         <MenuItem onClick={handleContextMenuClose}>Drucken</MenuItem>
         <MenuItem onClick={handleContextMenuClose}>Stornieren</MenuItem>
+        <MenuItem onClick={handleContextMenuClose}>Verzweigen</MenuItem>
       </Menu>
     </SidebarContainer>
   );

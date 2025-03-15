@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import { Menu as MenuIcon, AccountCircle, Notifications, Settings, ColorLens } from '@mui/icons-material';
 
+// Verwende eine Funktion, die das Theme aus dem props-Objekt extrahiert
 const StyledAppBar = styled(AppBar)`
-  background-color: ${props => props.theme.colors.primary} !important;
-  color: ${props => props.theme.colors.text} !important;
+  background-color: ${props => props.customTheme.colors.primary} !important;
+  color: ${props => props.customTheme.colors.text} !important;
 `;
 
 const Logo = styled.div`
@@ -42,12 +43,13 @@ const Header = () => {
   };
 
   return (
-    <StyledAppBar position="static" theme={theme}>
+    // Verwende customTheme als prop-Name statt theme
+    <StyledAppBar position="static" customTheme={theme}>
       <Toolbar>
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>
-        <Logo>KFZ-Versicherung</Logo>
+        <Logo>Tribe Motor</Logo>
         
         <Button color="inherit">Übersicht</Button>
         <Button color="inherit">Verträge</Button>

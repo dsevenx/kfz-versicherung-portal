@@ -10,8 +10,8 @@ const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.secondary};
+  color: ${props => props.customTheme.colors.text};
 `;
 
 const MainContent = styled.div`
@@ -27,8 +27,8 @@ const ContentArea = styled.main`
 `;
 
 const Footer = styled.footer`
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.primary};
+  color: ${props => props.customTheme.colors.text};
   padding: 10px 20px;
   text-align: center;
 `;
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <LayoutContainer theme={theme}>
+    <LayoutContainer customTheme={theme}>
       <Header />
       <MainContent>
         <Sidebar />
@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
         <ChatPanel />
       </MainContent>
       <TabPanel />
-      <Footer>
+      <Footer customTheme={theme}>
         © {new Date().getFullYear()} KFZ-Versicherungsportal
       </Footer>
     </LayoutContainer>

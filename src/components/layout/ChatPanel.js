@@ -6,8 +6,8 @@ import { Send, Close, ChatBubble } from '@mui/icons-material';
 
 const ChatContainer = styled(Paper)`
   width: 300px;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.secondary};
+  color: ${props => props.customTheme.colors.text};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -18,8 +18,8 @@ const ChatContainer = styled(Paper)`
 
 const ChatHeader = styled.div`
   padding: 10px;
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.customTheme.colors.primary};
+  color: ${props => props.customTheme.colors.text};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +37,7 @@ const MessageBubble = styled.div`
   border-radius: 18px;
   margin-bottom: 10px;
   word-wrap: break-word;
-  background-color: ${props => props.isUser ? props.theme.colors.accent : '#e0e0e0'};
+  background-color: ${props => props.isUser ? props.customTheme.colors.accent : '#e0e0e0'};
   color: ${props => props.isUser ? '#fff' : '#333'};
   align-self: ${props => props.isUser ? 'flex-end' : 'flex-start'};
   margin-left: ${props => props.isUser ? 'auto' : '0'};
@@ -54,8 +54,8 @@ const ToggleButton = styled(IconButton)`
   position: absolute !important;
   top: 50%;
   left: -48px;
-  background-color: ${props => props.theme.colors.primary} !important;
-  color: ${props => props.theme.colors.text} !important;
+  background-color: ${props => props.customTheme.colors.primary} !important;
+  color: ${props => props.customTheme.colors.text} !important;
   border-radius: 50% 0 0 50% !important;
 `;
 
@@ -98,12 +98,12 @@ const ChatPanel = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ToggleButton onClick={toggleChat} theme={theme}>
+      <ToggleButton onClick={toggleChat} customTheme={theme}>
         {open ? <Close /> : <ChatBubble />}
       </ToggleButton>
       
-      <ChatContainer theme={theme} open={open} elevation={3}>
-        <ChatHeader theme={theme}>
+      <ChatContainer customTheme={theme} open={open} elevation={3}>
+        <ChatHeader customTheme={theme}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Avatar style={{ marginRight: '8px' }}>S</Avatar>
             <Typography variant="subtitle1">Support-Agent</Typography>
@@ -112,7 +112,7 @@ const ChatPanel = () => {
         
         <ChatMessages>
           {chatHistory.map((msg, index) => (
-            <MessageBubble key={index} isUser={msg.isUser} theme={theme}>
+            <MessageBubble key={index} isUser={msg.isUser} customTheme={theme}>
               {msg.text}
             </MessageBubble>
           ))}
