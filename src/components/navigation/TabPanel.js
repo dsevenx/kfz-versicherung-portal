@@ -18,19 +18,13 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const TabPanel = () => {
+const TabPanel = ({ activeTab, setActiveTab }) => {
   const { theme } = useContext(ThemeContext);
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+ 
   return (
     <TabsContainer customTheme={theme}>
       <Tabs 
-        value={value} 
-        onChange={handleChange} 
+        value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}
         indicatorColor="secondary"
         textColor="inherit"
         centered

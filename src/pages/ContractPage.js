@@ -7,9 +7,8 @@ import Layout from '../components/layout/Layout';
 const ContractPage = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-  // TabPanel wird die activeTab-Zahl und die setActiveTab-Funktion nutzen
-  return (
-    <Layout>
+   return (
+    <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
       {activeTab === 0 && <ContractOverview />}
       {activeTab === 1 && <VehicleDetails />}
     </Layout>

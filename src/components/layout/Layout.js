@@ -33,9 +33,9 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, activeTab, setActiveTab }) => {
   const { theme } = useContext(ThemeContext);
-
+ 
   return (
     <LayoutContainer customTheme={theme}>
       <Header />
@@ -44,7 +44,7 @@ const Layout = ({ children }) => {
         <ContentArea>{children}</ContentArea>
         <ChatPanel />
       </MainContent>
-      <TabPanel />
+      <TabPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
       <Footer customTheme={theme}>
         © {new Date().getFullYear()} KFZ-Versicherungsportal
       </Footer>
