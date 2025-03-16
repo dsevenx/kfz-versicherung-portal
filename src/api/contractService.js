@@ -7,7 +7,7 @@ export const fetchContractData = async (contractId) => {
       setTimeout(() => {
         resolve({
           id: contractId || 'AS9838259145',
-          customerName: 'Rokosch Frank',
+          customerName: 'Mustermann Frank',
           gender: 'männlich',
           address: {
             street: 'Am Viehhügel 26',
@@ -22,7 +22,7 @@ export const fetchContractData = async (contractId) => {
             phonePrivate: '+49 (036459) 41064',
             phoneBusiness: '',
             phoneMobile: '+49 (0176) 43745961',
-            email: 'f.h.rokosch@freenet.de',
+            email: 'f.h.mustermann@freenet.de',
           },
           agent: {
             type: 'Angestellte/r',
