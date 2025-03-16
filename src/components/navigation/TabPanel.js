@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Tabs, Tab, Box } from '@mui/material';
-import { DirectionsCar, AddCircle, Category } from '@mui/icons-material';
+import { DirectionsCar, AddCircle, Category,TopicRounded } from '@mui/icons-material';
 
 const TabsContainer = styled.div`
   background-color: ${props => props.customTheme.colors.primary};
@@ -35,6 +35,7 @@ const TabPanel = () => {
         textColor="inherit"
         centered
       >
+        <StyledTab icon={<TopicRounded />} label="Übersicht" customTheme={theme} />
         <StyledTab icon={<DirectionsCar />} label="Fahrzeug" customTheme={theme} />
         <StyledTab icon={<AddCircle />} label="Zusatz" customTheme={theme} />
         <StyledTab icon={<Category />} label="Produkt" customTheme={theme} />

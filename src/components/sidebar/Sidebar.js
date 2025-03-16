@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { List, ListItem, ListItemIcon, ListItemText, Collapse, Menu, MenuItem } from '@mui/material';
-import { ExpandLess, ExpandMore, Description, Person, DirectionsCar, BusinessCenter, HomeWork } from '@mui/icons-material';
+import { ExpandLess, ExpandMore, Description, DirectionsCar, BusinessCenter, HomeWork, Payments } from '@mui/icons-material';
 
 const SidebarContainer = styled.aside`
   width: 250px;
@@ -19,8 +19,8 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState({
     contracts: true,
-    customers: false,
     vehicles: false,
+    agreements: false, 
   });
   const [contextMenu, setContextMenu] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -71,8 +71,25 @@ const Sidebar = () => {
           </NestedList>
         </Collapse>
 
-        
-         
+        <ListItem button onClick={() => handleClick('agreements')}>
+          <ListItemIcon><HomeWork /></ListItemIcon>
+          <ListItemText primary="Vereinbarung" />
+          {open.agreements ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={open.agreements} timeout="auto" unmountOnExit>
+          <NestedList component="div" disablePadding>
+            <ListItem button>
+              <ListItemText primary="Vorversicherung HUK" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Vertreter BVT,FB" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="abweichende Empfänger" />
+            </ListItem>
+          </NestedList>
+        </Collapse>
+
         <ListItem button onClick={() => handleClick('vehicles')}>
           <ListItemIcon>
             <DirectionsCar />
@@ -91,18 +108,20 @@ const Sidebar = () => {
           </NestedList>
         </Collapse>
 
+
+
         <ListItem button>
           <ListItemIcon>
-            <BusinessCenter />
+            <Payments />
           </ListItemIcon>
-          <ListItemText primary="Anträge" />
+          <ListItemText primary="In/Ex" />
         </ListItem>
 
         <ListItem button>
           <ListItemIcon>
             <HomeWork />
           </ListItemIcon>
-          <ListItemText primary="Schadensfälle" />
+          <ListItemText primary="Schaden" />
         </ListItem>
       </List>
 
