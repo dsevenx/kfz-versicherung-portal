@@ -68,33 +68,11 @@ const Sidebar = () => {
             >
               <ListItemText primary="Vertrag AS1122334455" />
             </ListItem>
-            <ListItem button>
-              <ListItemText primary="Offerte VN123456" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Abgelehnt AS7654321" />
-            </ListItem>
           </NestedList>
         </Collapse>
 
-        <ListItem button onClick={() => handleClick('customers')}>
-          <ListItemIcon>
-            <Person />
-          </ListItemIcon>
-          <ListItemText primary="Kunden" />
-          {open.customers ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={open.customers} timeout="auto" unmountOnExit>
-          <NestedList component="div" disablePadding>
-            <ListItem button>
-              <ListItemText primary="Rokosch Frank" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Müller, Hans" />
-            </ListItem>
-          </NestedList>
-        </Collapse>
-
+        
+         
         <ListItem button onClick={() => handleClick('vehicles')}>
           <ListItemIcon>
             <DirectionsCar />
@@ -108,7 +86,7 @@ const Sidebar = () => {
               <ListItemText primary="Mercedes GLC 250" />
             </ListItem>
             <ListItem button>
-              <ListItemText primary="VW Golf" />
+              <ListItemText primary="VW Golf - Vorfahrzeug" />
             </ListItem>
           </NestedList>
         </Collapse>

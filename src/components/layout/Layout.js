@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import Header from './Header';
-import Sidebar from './Sidebar';
+import Sidebar from '../sidebar/Sidebar';
 import ChatPanel from './ChatPanel';
-import TabPanel from './TabPanel';
+import TabPanel from '../navigation/TabPanel';
 
 const LayoutContainer = styled.div`
   display: flex;
