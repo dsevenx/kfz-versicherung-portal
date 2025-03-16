@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { fetchContractData } from '../../api/contractService';
 import { Paper, Typography, Grid, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
-import { DirectionsCar, Speed, Event, LocalOffer, Add, Delete } from '@mui/icons-material';
+import { DirectionsCar, Speed, LocalOffer, Add, Delete } from '@mui/icons-material';
 
 const VehiclePaper = styled(Paper)`
   padding: 20px;

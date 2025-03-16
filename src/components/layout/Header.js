@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
-import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
+import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import { Menu as MenuIcon, AccountCircle, Notifications, Settings, ColorLens } from '@mui/icons-material';
 
 // Verwende eine Funktion, die das Theme aus dem props-Objekt extrahiert
