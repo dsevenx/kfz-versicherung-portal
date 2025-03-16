@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
-import { Tabs, Tab, Box } from '@mui/material';
+import { Tabs, Tab} from '@mui/material';
 import { DirectionsCar, AddCircle, Category,TopicRounded } from '@mui/icons-material';
 
 const TabsContainer = styled.div`

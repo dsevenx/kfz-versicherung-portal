@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { List, ListItem, ListItemIcon, ListItemText, Collapse, Menu, MenuItem } from '@mui/material';
-import { ExpandLess, ExpandMore, Description, DirectionsCar, BusinessCenter, HomeWork, Payments } from '@mui/icons-material';
+import { ExpandLess, ExpandMore, Description, DirectionsCar,  HomeWork, Payments } from '@mui/icons-material';
 
 const SidebarContainer = styled.aside`
   width: 250px;
