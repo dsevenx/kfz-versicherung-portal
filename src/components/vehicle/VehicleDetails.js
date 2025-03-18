@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
 import { fetchContractData } from '../../api/contractService';
 import { Paper, Typography, Grid, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
-import { DirectionsCar, Speed, LocalOffer, Add, Delete } from '@mui/icons-material';
+import { DirectionsCar, Speed, LocalOffer, Add, Delete, EventNote } from '@mui/icons-material';
+import DatePicker from '../common/DatePicker.tsx';
 
 const VehiclePaper = styled(Paper)`
   padding: 20px;
@@ -43,16 +44,30 @@ const ActionButton = styled(Button)`
   margin-right: 8px !important;
 `;
 
+const DatePickerWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
 const VehicleDetails = () => {
   const { theme } = useContext(ThemeContext);
   const [contract, setContract] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [registrationDate, setRegistrationDate] = useState(new Date());
+  const [firstRegistrationDate, setFirstRegistrationDate] = useState(new Date());
 
   useEffect(() => {
     const loadContractData = async () => {
       try {
         const data = await fetchContractData();
         setContract(data);
+        
+        // Wenn die Daten vom Server kommen, aktualisieren wir die Datumswerte
+        if (data?.vehicle?.registrationDate) {
+          setRegistrationDate(new Date(data.vehicle.registrationDate));
+        }
+        if (data?.vehicle?.firstRegistrationDate) {
+          setFirstRegistrationDate(new Date(data.vehicle.firstRegistrationDate));
+        }
       } catch (error) {
         console.error('Error loading contract data:', error);
       } finally {
@@ -62,6 +77,16 @@ const VehicleDetails = () => {
 
     loadContractData();
   }, []);
+
+  const handleRegistrationDateChange = (date) => {
+    setRegistrationDate(date);
+    // Hier könnte man die Änderungen an den Server senden
+  };
+
+  const handleFirstRegistrationDateChange = (date) => {
+    setFirstRegistrationDate(date);
+    // Hier könnte man die Änderungen an den Server senden
+  };
 
   if (loading) {
     return <Typography>Fahrzeugdaten werden geladen...</Typography>;
@@ -110,6 +135,38 @@ const VehicleDetails = () => {
               <InfoLabel variant="body2">Branchengruppe:</InfoLabel>
               <InfoValue variant="body2">{vehicle.industryGroup}</InfoValue>
             </InfoRow>
+          </Grid>
+        </Grid>
+      </VehiclePaper>
+      
+      {/* Neue Sektion für Zulassungsdaten */}
+      <VehiclePaper elevation={2}>
+        <SectionTitle variant="h6" customTheme={theme}>
+          <IconWrapper customTheme={theme}><EventNote /></IconWrapper>
+          Zulassungsdaten
+        </SectionTitle>
+        
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <DatePickerWrapper>
+              <DatePicker
+                label="Anmeldedatum"
+                id="registration-date"
+                initialDate={registrationDate}
+                onChange={handleRegistrationDateChange}
+              />
+            </DatePickerWrapper>
+          </Grid>
+          
+          <Grid item xs={12} md={6}>
+            <DatePickerWrapper>
+              <DatePicker
+                label="Erstzulassungsdatum"
+                id="first-registration-date"
+                initialDate={firstRegistrationDate}
+                onChange={handleFirstRegistrationDateChange}
+              />
+            </DatePickerWrapper>
           </Grid>
         </Grid>
       </VehiclePaper>
