@@ -55,37 +55,59 @@ const CalendarContainer = styled.div`
   border: 1px solid #e5e7eb;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  padding-bottom: 1rem;
 `;
 
 const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid #e5e7eb;
+`;
+
+const MonthYearContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MonthYearLabel = styled.div`
   font-weight: 500;
+  font-size: 1.25rem;
+`;
+
+const MonthYearSelector = styled.div`
+  font-size: 0.75rem;
+  color: #3b82f6;
+  cursor: pointer;
+  margin-top: 0.25rem;
 `;
 
 const ArrowButton = styled.button`
-  padding: 0.25rem;
-  border-radius: 9999px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #6b7280;
   &:hover {
     background-color: #f3f4f6;
+    color: #374151;
   }
 `;
 
 const CalendarBody = styled.div`
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 const WeekdaysGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 `;
 
 const WeekdayCell = styled.div`
@@ -93,6 +115,7 @@ const WeekdayCell = styled.div`
   font-size: 0.875rem;
   font-weight: 500;
   color: #6b7280;
+  padding: 0.5rem 0;
 `;
 
 const DaysGrid = styled.div`
@@ -102,51 +125,61 @@ const DaysGrid = styled.div`
 `;
 
 const DayCell = styled.div`
-  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
   text-align: center;
   cursor: pointer;
+  border-radius: 50%;
   &:hover {
     background-color: #e0f2fe;
   }
 `;
 
 const EmptyCell = styled.div`
-  padding: 0.5rem;
+  height: 2.5rem;
   text-align: center;
   color: #d1d5db;
 `;
 
 const SelectedDayCell = styled(DayCell)`
-  background-color: #3b82f6;
+  position: relative;
+  background-color: #5086ed;
   color: white;
-  border-radius: 9999px;
-`;
 
-const CalendarFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border-top: 1px solid #e5e7eb;
-`;
-
-const FooterButton = styled.button`
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.25rem;
-`;
-
-const TodayButton = styled(FooterButton)`
-  color: #3b82f6;
-  &:hover {
-    background-color: #eff6ff;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
   }
 `;
 
-const CancelButton = styled(FooterButton)`
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
   color: #6b7280;
+  cursor: pointer;
   &:hover {
-    background-color: #f3f4f6;
+    color: #374151;
   }
+`;
+
+const FormatHint = styled.div`
+  position: absolute;
+  top: 0;
+  right: 40px;
+  font-size: 0.75rem;
+  color: #6b7280;
+  padding: 0.5rem;
 `;
 
 interface DatePickerProps {
@@ -154,13 +187,15 @@ interface DatePickerProps {
   initialDate?: Date;
   label?: string;
   id?: string;
+  formatHint?: string;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ 
   onChange, 
   initialDate = new Date(), 
   label = "Date", 
-  id = "datepicker" 
+  id = "datepicker",
+  formatHint = "TT.MM.JJJJ"
 }) => {
   const [date, setDate] = useState<Date>(initialDate);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -170,12 +205,11 @@ const DatePicker: React.FC<DatePickerProps> = ({
   
   // Format date for display
   const formatDisplayDate = (date: Date): string => {
-    const options: Intl.DateTimeFormatOptions = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-    return new Date(date).toLocaleDateString(undefined, options);
+    // Format as DD.MM.YYYY for German style
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
   };
 
   // Close date picker when clicking outside
@@ -270,9 +304,16 @@ const DatePicker: React.FC<DatePickerProps> = ({
     return days;
   };
 
+  /*
   const monthNames: string[] = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
+  ];
+  */
+
+  const germanMonthNames: string[] = [
+    "Januar", "Februar", "März", "April", "Mai", "Juni",
+    "Juli", "August", "September", "Oktober", "November", "Dezember"
   ];
 
   return (
@@ -288,6 +329,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           readOnly
         />
+        {formatHint && <FormatHint>{formatHint}</FormatHint>}
         <CalendarButton 
           onClick={() => setIsOpen(!isOpen)}
           type="button"
@@ -300,15 +342,21 @@ const DatePicker: React.FC<DatePickerProps> = ({
       
       {isOpen && (
         <CalendarContainer>
+          <CloseButton onClick={() => setIsOpen(false)}>×</CloseButton>
           <CalendarHeader>
             <ArrowButton onClick={prevMonth} type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
             </ArrowButton>
-            <MonthYearLabel>
-              {monthNames[month]} {year}
-            </MonthYearLabel>
+            <MonthYearContainer>
+              <MonthYearLabel>
+                {germanMonthNames[month]} {year}
+              </MonthYearLabel>
+              <MonthYearSelector>
+                Monat und Jahr wählen
+              </MonthYearSelector>
+            </MonthYearContainer>
             <ArrowButton onClick={nextMonth} type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -327,25 +375,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
               {renderDays()}
             </DaysGrid>
           </CalendarBody>
-          <CalendarFooter>
-            <TodayButton 
-              onClick={() => {
-                const today = new Date();
-                setMonth(today.getMonth());
-                setYear(today.getFullYear());
-                handleDateSelect(today.getDate());
-              }}
-              type="button"
-            >
-              Today
-            </TodayButton>
-            <CancelButton 
-              onClick={() => setIsOpen(false)}
-              type="button"
-            >
-              Cancel
-            </CancelButton>
-          </CalendarFooter>
         </CalendarContainer>
       )}
     </DatePickerContainer>
