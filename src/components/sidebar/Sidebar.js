@@ -56,7 +56,7 @@ const Sidebar = () => {
           <NestedList component="div" disablePadding>
             <ListItem
               button
-              onContextMenu={(e) => handleContextMenu(e, 'AS9838259145')}
+              onContextMenu={(e) => handleContextMenu(e, 'AS9838259666')}
               selected={selectedItem === 'AS9838259145'}
             >
               <ListItemText primary="Vertrag AS9838259145" />
