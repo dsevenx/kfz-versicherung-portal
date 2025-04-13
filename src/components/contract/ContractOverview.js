@@ -61,7 +61,7 @@ const InsurancePremium = styled.div`
   font-weight: ${props => props.bold ? '500' : 'normal'};
 `;
 
-const ContractOverview = () => {
+const ContractOverview = ({ vertrkey }) => {
   const { theme } = useContext(ThemeContext);
   const [contract, setContract] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -69,7 +69,7 @@ const ContractOverview = () => {
   useEffect(() => {
     const loadContractData = async () => {
       try {
-        const data = await fetchContractData();
+        const data = await fetchContractData(vertrkey);
         setContract(data);
       } catch (error) {
         console.error('Error loading contract data:', error);
@@ -79,7 +79,7 @@ const ContractOverview = () => {
     };
 
     loadContractData();
-  }, []);
+  }, [vertrkey]);
 
   if (loading) {
     return <Typography>Vertragsdaten werden geladen...</Typography>;

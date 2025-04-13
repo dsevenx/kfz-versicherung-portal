@@ -15,7 +15,7 @@ export const fetchContractData = async (contractId) => {
             city: 'Blankenhain',
           },
           birthDate: '27.01.1953',
-          contractNumber: 'AS9838259145',
+          contractNumber: 'AS9838259145'+contractId,
           validFrom: '01.01.2024',
           status: 'Vertrag Aktiv',
           contactInfo: {
@@ -70,7 +70,7 @@ export const fetchContractData = async (contractId) => {
           totalPremium: '583,39',
           vehicle: {
             licensePlate: 'AP-FR 333',
-            make: 'Mercedes-Benz',
+            make: 'Mercedes-Benz'+contractId,
             model: '204 X (GLC 250 4MATIC)',
             mileage: '17.000',
             usage: '1 PKW / 1 Ohne Vermietung',

@@ -3,13 +3,13 @@ import ContractOverview from '../components/contract/ContractOverview';
 import VehicleDetails from '../components/vehicle/VehicleDetails';
 import Layout from '../components/layout/Layout';
 
-const ContractPage = () => {
+const ContractPage = ({ vertrkey } ) => {
   const [activeTab, setActiveTab] = useState(0);
 
    return (
     <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
-      {activeTab === 0 && <ContractOverview />}
-      {activeTab === 1 && <VehicleDetails />}
+      {activeTab === 0 && <ContractOverview vertrkey={vertrkey}/>}
+      {activeTab === 1 && <VehicleDetails vertrkey={vertrkey}/>}
     </Layout>
   );
 };

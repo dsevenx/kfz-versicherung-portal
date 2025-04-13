@@ -48,7 +48,7 @@ const DatePickerWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const VehicleDetails = () => {
+const VehicleDetails = ({ vertrkey }) => {
   const { theme } = useContext(ThemeContext);
   const [contract, setContract] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,7 @@ const VehicleDetails = () => {
   useEffect(() => {
     const loadContractData = async () => {
       try {
-        const data = await fetchContractData();
+        const data = await fetchContractData(vertrkey);
         setContract(data);
         
         // Wenn die Daten vom Server kommen, aktualisieren wir die Datumswerte
@@ -76,7 +76,7 @@ const VehicleDetails = () => {
     };
 
     loadContractData();
-  }, []);
+  }, [vertrkey]);
 
   const handleRegistrationDateChange = (date) => {
     setRegistrationDate(date);
